@@ -10,6 +10,8 @@ RUN set -x \
     ttf-freefont \
     chromium
 
+COPY . .
+
 RUN npm install
 
 CMD ["node", "scrape.js"]
