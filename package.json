@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/kiote/auto24-ee-scrapper#readme",
   "dependencies": {
-    "puppeteer": "^1.11.0",
+    "puppeteer": "^0.11.0",
     "striptags": "^3.1.1"
   }
 }
