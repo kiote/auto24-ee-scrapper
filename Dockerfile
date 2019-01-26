@@ -1,15 +1,14 @@
-FROM mhart/alpine-node:10
-
-COPY . .
-
-RUN apk update && apk add bash
-
-ENV CHROME_BIN=/usr/bin/chromium-browser
-RUN echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
-    echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
-    apk add --no-cache \
-      chromium@edge \
-      nss@edge
+FROM node:10.7.0-alpine AS base
+ENV CHROME_BIN="/usr/bin/chromium-browser" \
+    PUPPETEER_SKIP_CHROMIUM_DOWNLOAD="true"
+RUN set -x \
+    && apk update \
+    && apk upgrade \
+    && apk add --no-cache \
+    udev \
+    bash \
+    ttf-freefont \
+    chromium
 
 RUN npm install
 
