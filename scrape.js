@@ -8,12 +8,13 @@ const puppeteer = require('puppeteer');
   const allTitles = await page.evaluate(()=>
     Array.from(document.querySelectorAll('tr.result-row')).map((el)=>{
       const elements = Array.from(el.childNodes);
+      const picture = elements[0].innerHTML;
       const descr= elements[1].innerHTML; 
       const year = elements[4].innerHTML; 
       const fuel = elements[6].innerHTML;
       const transmission = elements[8].innerHTML;
       const price = elements[10].innerHTML;
-      return [year, descr, fuel, transmission, price]})
+      return [picture, year, descr, fuel, transmission, price]})
   );
   allTitles.map((title) => console.log(title));
   await browser.close();
