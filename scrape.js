@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const striptags = require('striptags');
 
 (async () => {
   const browser = await puppeteer.launch();
@@ -16,6 +17,12 @@ const puppeteer = require('puppeteer');
       const price = elements[10].innerHTML;
       return [picture, year, descr, fuel, transmission, price]})
   );
-  allTitles.map((title) => console.log(title));
+  allTitles.map((title) => {
+    const regex = /img src="(.*jpg)/;
+    const found = title[0].match(regex);
+    title[0] = found[1];
+    const result = title.join("\t");
+    console.log(striptags(result));
+  });
   await browser.close();
 })();
