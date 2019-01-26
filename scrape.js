@@ -8,7 +8,7 @@ const striptags = require('striptags');
     args: ['--no-sandbox', '--headless', '--disable-gpu', '--disable-dev-shm-usage']
   });
   const page = await browser.newPage();
-  const url = "https://eng.auto24.ee/kasutatud/nimekiri.php?bn=2&a=100&aj=&b=2&bw=2056&f1=2010&f2=2017&l2=110000&ae=2&af=50&ag=0&ag=1&otsi=search";
+  const url = process.env.SEARCH_URL;
   await page.goto(url);
   const allTitles = await page.evaluate(()=>
     Array.from(document.querySelectorAll('tr.result-row')).map((el)=>{
