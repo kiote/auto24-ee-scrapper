@@ -24,9 +24,11 @@ const striptags = require('striptags');
   allTitles.map((title) => {
     const regex = /img src="(.*jpg)/;
     const found = title[0].match(regex);
-    title[0] = found[1];
-    const result = title.join("\t");
-    console.log(striptags(result));
+    if (found) {
+      title[0] = found[1];
+      const result = title.join("\t");
+      console.log(striptags(result));
+    }
   });
   await browser.close();
 })();
