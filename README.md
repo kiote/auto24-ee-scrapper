@@ -1,5 +1,7 @@
 # auto24-ee-scrapper
 
+Scrapes results from auto24.ee into tabs-separated lines
+
 ```
 docker pull kiote/scraper:v1.0.1
 
