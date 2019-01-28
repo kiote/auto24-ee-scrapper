@@ -22,10 +22,13 @@ const striptags = require('striptags');
       return [picture, year, descr, fuel, transmission, price]})
   );
   allTitles.map((title) => {
-    const regex = /img src="(.*jpg)/;
-    const found = title[0].match(regex);
-    if (found) {
-      title[0] = found[1];
+    const imgRegex = /img src="(.*jpg)/;
+    const imgFound = title[0].match(imgRegex);
+
+    const linkRegex = /a href="\/used\/([0-9]+)"/;
+    const linkFound = title[0].match(linkRegex);
+    if (imgFound && linkFound) {
+      title[0] = `${imgFound[1]}\t${linkFound[1]}`;
       const result = title.join("\t");
       console.log(striptags(result));
     }
